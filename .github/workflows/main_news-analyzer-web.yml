@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -34,7 +34,7 @@ jobs:
         path: .
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'production'
@@ -52,5 +52,5 @@ jobs:
       with:
         app-name: 'news-analyzer-web'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e1444d7bd99545f3826c960cf9e6f169 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c80552c5ad6d4fce9825f36e2aaa08d8 }}
         package: .
