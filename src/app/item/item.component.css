@@ -1,0 +1,17 @@
+.item-card {
+    max-width: 600px;
+    margin: 10px;
+}
+
+.news-card {
+    max-width: 100%;
+    margin: 10px;
+}
+
+table {
+    width: 100%;
+}
+
+table tr td {
+    vertical-align: top;
+}

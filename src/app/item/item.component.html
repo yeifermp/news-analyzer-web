@@ -1,0 +1,59 @@
+<table>
+    <tr>
+        <td>
+            <mat-card class="item-card" *ngIf="loading === false">
+                <mat-card-header>
+                    <mat-card-title>{{item.name}}</mat-card-title>
+                    <mat-card-subtitle>{{item.type}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{item.imageUrl}}" alt="{{item.name}}">
+                <mat-card-content>
+                    <p>{{item.description}}</p>
+                </mat-card-content>
+                <mat-chip-list>
+                    <mat-chip *ngIf="loadingPositiveRate === false">Positive: {{positive}}% </mat-chip>
+                    <mat-chip *ngIf="loadingNegativeRate === false">Negative: {{negative}}% </mat-chip>
+                    <mat-chip *ngIf="loadingNeutralRate === false">Neutral: {{neutral}}% </mat-chip>
+                </mat-chip-list>
+            </mat-card>
+        </td>
+        <td>
+            <mat-card class="news-card" *ngIf="loading === false">
+                <mat-card-header>
+                    <mat-card-title>News</mat-card-title>
+                </mat-card-header>
+                <mat-accordion>
+                    <mat-expansion-panel class="news-panel" *ngFor="let item of news">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>{{item.name}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{item.description}}</p>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-chip-list>
+                                    <mat-chip>Positive: {{item.positive}}% </mat-chip>
+                                    <mat-chip>Negative: {{item.negative}}% </mat-chip>
+                                    <mat-chip>Neutral: {{item.neutral}}% </mat-chip>
+                                </mat-chip-list>
+                            </mat-list-item>
+                            <mat-divider *ngIf="hasAboutItems(item)"></mat-divider>
+                            <mat-list-item *ngIf="hasAboutItems(item)">
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let about of item.isAbout" routerLink="/things/{{about.id}}">{{about.name}}</mat-chip>
+                                </mat-chip-list>
+                            </mat-list-item>
+                            <mat-divider *ngIf="hasKeyPhrasesItems(item)"></mat-divider>
+                            <mat-list-item *ngIf="hasKeyPhrasesItems(item)">
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let keyphrase of item.keyPhrases" routerLink="/things/{{keyphrase.id}}">{{keyphrase.name}}</mat-chip>
+                                </mat-chip-list>
+                            </mat-list-item>
+                        </mat-list>
+                        </mat-expansion-panel>
+                </mat-accordion>
+            </mat-card>
+        </td>
+    </tr>
+</table>
+
+<mat-spinner id="spinner" *ngIf="loading"></mat-spinner>
